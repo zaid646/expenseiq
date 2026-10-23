@@ -1,4 +1,5 @@
 """Application configuration (pydantic-settings) loaded from the repo-root .env."""
+
 from __future__ import annotations
 
 from functools import lru_cache
@@ -71,6 +72,15 @@ class Settings(BaseSettings):
     # --- harness behaviour ---
     max_extract_attempts: int = 3
     min_field_confidence: float = 0.55
+
+    # --- durable workflows ---
+    # Empty URL uses the in-process store (single worker / tests). Set to
+    # redis://host:6379/0 for a lease + checkpoint store shared by workers.
+    durable_redis_url: str = ""
+    durable_lease_seconds: int = 30
+    durable_max_attempts: int = 3
+    durable_retry_base_seconds: float = 0.05
+    durable_approval_threshold_usd: float = 100.0
 
     @property
     def langfuse_enabled(self) -> bool:

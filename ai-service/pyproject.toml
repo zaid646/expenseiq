@@ -26,6 +26,8 @@ dependencies = [
     # clustering / community detection
     "networkx>=3.3",
     "scikit-learn>=1.5",
+    # durable workflow checkpoints / leases
+    "redis>=5.0",
 ]
 
 [project.optional-dependencies]
@@ -51,6 +53,7 @@ evals = [
 dev = [
     "pytest>=8.3",
     "pytest-asyncio>=0.23",
+    "fakeredis>=2.23",
     "ruff>=0.6",
     "jupyter>=1.1",
     "ipykernel>=6.29",

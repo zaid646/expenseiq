@@ -1,4 +1,5 @@
 """ExpenseIQ AI service — FastAPI application entrypoint."""
+
 from __future__ import annotations
 
 import logging
@@ -13,7 +14,17 @@ from .config import get_settings
 from .graph.router import router as graph_router
 from .llm import LLMClient
 from .metrics import STORE
-from .routers import admin, assistant, code, corrections, extract, ops, policy, search
+from .routers import (
+    admin,
+    assistant,
+    code,
+    corrections,
+    extract,
+    ops,
+    policy,
+    search,
+    workflows,
+)
 from .schemas import HealthResponse
 from .tracing import get_tracer
 
@@ -59,6 +70,7 @@ app.include_router(policy.router)
 app.include_router(corrections.router)
 app.include_router(search.router)
 app.include_router(assistant.router)
+app.include_router(workflows.router)
 app.include_router(graph_router, prefix="/graphql")
 
 
